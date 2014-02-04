@@ -8,7 +8,7 @@
 
   <groupId>coop.nisc.plugins</groupId>
   <artifactId>Run_puppet_on_web_nodes</artifactId>
-  <version>1.0</version>
+  <version>1.0.1</version>
   <packaging>hpi</packaging>
 
   <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->

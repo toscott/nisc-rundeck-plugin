@@ -126,6 +126,15 @@ public class RundeckNotifier extends Notifier {
         return appTag;
     }
 
+    /**
+     * This should force puppet to run after the build is all the way finished.. Which means we can't mark the build as failed, but oh well..
+     * @return
+     */
+    @Override
+    public boolean needsToRunAfterFinalized() {
+        return true;
+    }
+
     @Extension (ordinal = 1000)
     public static final class RundeckDescriptor extends BuildStepDescriptor<Publisher> {
 
