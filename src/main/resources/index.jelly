@@ -1,0 +1,6 @@
+<!--
+  This view is used to render the installed plugins page.
+-->
+<div>
+  Plugin that integrates with rundeck to run puppet on build and promotion
+</div>

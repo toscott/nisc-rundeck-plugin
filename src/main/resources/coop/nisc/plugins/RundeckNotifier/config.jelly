@@ -1,0 +1,11 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <!--
+      This is the display that shows up in each project when the Plugin is added.
+    -->
+
+    <f:entry title="App tag" field="appTag"
+             description="This is the app tag for the current project"
+             help="${descriptor.getHelpFile('apptag')}">
+        <f:textbox name="RundeckNotifier.appTag" value="${instance.getAppTag()}"/>
+    </f:entry>
+</j:jelly>

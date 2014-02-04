@@ -1,0 +1,46 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <!--
+      This is the display that shows on the main configuration page of jenkins
+
+      Jenkins uses a set of tag libraries to provide uniformity in forms.
+      To determine where this tag is defined, first check the namespace URI,
+      and then look under $JENKINS/views/. For example, <f:section> is defined
+      in $JENKINS/views/lib/form/section.jelly.
+    -->
+    <f:section title="Puppet on web nodes">
+        <f:entry title="Dev Rundeck Url" field="devRundeckUrl"
+                 description="Base url for arcus rundeck"
+                 help="/plugin/Run_puppet_on_web_nodes/help-rundeckurl.html">
+            <f:textbox value="${descriptor.getDevUrl()}"/>
+        </f:entry>
+        <f:entry title="Dev Puppet Run UUID" field="devRundeckUUID"
+                 description="UUID for the redeploy job in arcus rundeck"
+                 help="/plugin/Run_puppet_on_web_nodes/help-uuid.html">
+            <f:textbox value="${descriptor.getDevPuppetUUID()}"/>
+        </f:entry>
+        <f:entry title="Dev API Token" field="devRundeckApiToken"
+                 description="API token generated from dev rundeck."
+                 help="/plugin/Run_puppet_on_web_nodes/help-apitoken.html">
+            <f:textbox value="${descriptor.getDevApiToken()}"/>
+        </f:entry>
+        <f:validateButton title="Test Dev Connection" progress="Testing..." method="testDevConnection"
+                          with="devRundeckUrl,devRundeckApiToken" />
+        <f:entry title="Staging Rundeck Url" field="stagingRundeckUrl"
+                 description="Base url for stratus rundeck"
+                 help="/plugin/Run_puppet_on_web_nodes/help-rundeckurl.html">
+            <f:textbox value="${descriptor.getStagingUrl()}"/>
+        </f:entry>
+        <f:entry title="Staging Puppet Run UUID" field="stagingRundeckUUID"
+                 description="UUID for the redeploy job in stratus rundeck"
+                 help="/plugin/Run_puppet_on_web_nodes/help-uuid.html">
+            <f:textbox value="${descriptor.getStagingPuppetUUID()}"/>
+        </f:entry>
+        <f:entry title="Staging API Token" field="stagingRundeckApiToken"
+                 description="Api token generated from staging rundeck."
+                 help="/plugin/Run_puppet_on_web_nodes/help-apitoken.html">
+            <f:textbox value="${descriptor.getStagingApiToken()}"/>
+        </f:entry>
+        <f:validateButton title="Test Staging Connection" progress="Testing..." method="testStagingConnection"
+                          with="stagingRundeckUrl,stagingRundeckApiToken" />
+    </f:section>
+</j:jelly>
