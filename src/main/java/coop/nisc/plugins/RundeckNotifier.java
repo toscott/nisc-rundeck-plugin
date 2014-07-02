@@ -1,5 +1,6 @@
 package coop.nisc.plugins;
 
+import hudson.EnvVars;
 import hudson.Extension;
 import hudson.Launcher;
 import hudson.model.*;
@@ -43,11 +44,12 @@ public class RundeckNotifier extends Notifier {
         if (build.getResult() == Result.SUCCESS) {
             RundeckDescriptor descriptor = getDescriptor();
 
-            //TODO.. find a better way to denote promotion to staging..
             String s = FileUtils.readFileToString(build.getLogFile());
             RundeckClient rundeck;
             String jobUUID;
-            if (s.length() < 5000 && s.contains(PROMOTION_KEY)) {
+            EnvVars environment = build.getEnvironment(listener);
+            String promoted_url = environment.get("PROMOTED_URL");
+            if (promoted_url != null && !promoted_url.isEmpty()) {
                 listener.getLogger().println("Constructing the staging rundeck client");
                 rundeck = descriptor.getStagingRundeck();
                 jobUUID = descriptor.getStagingPuppetUUID();
